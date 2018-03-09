@@ -1,13 +1,18 @@
 import math
 
 def make_bezier():
-    pass
+    t = new_matrix()
+    t[0] = [-1, 3, -3, 1]
+    t[1] = [3, -6, 3, 0]
+    t[2] = [-3, 3, 0, 0]
+    t[3] = [1, 0, 0, 0]
+    return t
 
 def make_hermite():
     pass
 
 def generate_curve_coefs( p1, p2, p3, p4, t ):
-    pass
+    
 
 
 def make_translate( x, y, z ):
@@ -54,12 +59,17 @@ def make_rotZ( theta ):
     return t
 
 def print_matrix( matrix ):
-    s = ''
-    for r in range( len( matrix[0] ) ):
-        for c in range( len(matrix) ):
-            s+= str(matrix[c][r]) + ' '
-        s+= '\n'
-    print s
+  output = ""
+  for xyz in range(0, 4):
+    output += "|  "
+    for point in matrix: # beautifies print output to have even columns
+      max_len = len(str(max(point)))
+      num = str(point[xyz])
+      while (len(num) < max_len):
+        num = " " + num
+      output += num + "  "
+    output += "|\n"
+  print output
 
 def ident( matrix ):
     for r in range( len( matrix[0] ) ):

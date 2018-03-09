@@ -2,8 +2,15 @@ from display import *
 from matrix import *
 
 
+# doesn't account for adding odd number of points
 def add_circle( points, cx, cy, cz, r, step ):
-    pass
+    # step = t      
+    t = 2 * math.pi * step
+    theta = 0
+    while (theta < 2 * math.pi):
+      add_point(points, r * math.cos(theta) + cx, r * math.sin(theta) + cy, 0)
+      theta += t
+    
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     pass
