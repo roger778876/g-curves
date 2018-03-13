@@ -9,8 +9,6 @@ color = [ 0, 255, 0 ]
 edges = []
 transform = new_matrix()
 
-bm = make_bezier()
-print_matrix(bm)
 
 # print_matrix( make_translate(3, 4, 5) )
 # print

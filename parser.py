@@ -8,38 +8,38 @@ The file follows the following format:
    Every command is a single character that takes up a line
    Any command that requires arguments must have those arguments in the second line.
    The commands are as follows:
-	 circle: add a circle to the edge matrix - 
-	  takes 4 arguments (cx, cy, cz, r)
-	 hermite: add a hermite curve to the edge matrix -
-	  takes 8 arguments (x0, y0, x1, y1, rx0, ry0, rx1, ry1)
-	 bezier: add a bezier curve to the edge matrix -
-	  takes 8 arguments (x0, y0, x1, y1, x2, y2, x3, y3)
+   circle: add a circle to the edge matrix - 
+    takes 4 arguments (cx, cy, cz, r)
+   hermite: add a hermite curve to the edge matrix -
+    takes 8 arguments (x0, y0, x1, y1, rx0, ry0, rx1, ry1)
+   bezier: add a bezier curve to the edge matrix -
+    takes 8 arguments (x0, y0, x1, y1, x2, y2, x3, y3)
 
      line: add a line to the edge matrix - 
-	  takes 6 arguemnts (x0, y0, z0, x1, y1, z1)
-	 ident: set the transform matrix to the identity matrix - 
-	 scale: create a scale matrix, 
-	  then multiply the transform matrix by the scale matrix - 
-	  takes 3 arguments (sx, sy, sz)
-	 move: create a translation matrix, 
-	  then multiply the transform matrix by the translation matrix - 
-	  takes 3 arguments (tx, ty, tz)
-	 rotate: create a rotation matrix,
-	  then multiply the transform matrix by the rotation matrix -
-	  takes 2 arguments (axis, theta) axis should be x, y or z
-	 apply: apply the current transformation matrix to the 
-	  edge matrix
-	 display: draw the lines of the edge matrix to the screen
-	  display the screen
-	 save: draw the lines of the edge matrix to the screen
-	  save the screen to a file -
-	  takes 1 argument (file name)
-	 quit: end parsing
+    takes 6 arguemnts (x0, y0, z0, x1, y1, z1)
+   ident: set the transform matrix to the identity matrix - 
+   scale: create a scale matrix, 
+    then multiply the transform matrix by the scale matrix - 
+    takes 3 arguments (sx, sy, sz)
+   move: create a translation matrix, 
+    then multiply the transform matrix by the translation matrix - 
+    takes 3 arguments (tx, ty, tz)
+   rotate: create a rotation matrix,
+    then multiply the transform matrix by the rotation matrix -
+    takes 2 arguments (axis, theta) axis should be x, y or z
+   apply: apply the current transformation matrix to the 
+    edge matrix
+   display: draw the lines of the edge matrix to the screen
+    display the screen
+   save: draw the lines of the edge matrix to the screen
+    save the screen to a file -
+    takes 1 argument (file name)
+   quit: end parsing
 
 See the file script for an example of the file format
 """
 ARG_COMMANDS = [ 'line', 'scale', 'move', 'rotate', 'save', 'circle', 'hermite', 'bezier']
-STEP = 0.01
+STEP = 0.001
 
 def parse_file( fname, edges, transform, screen, color ):
 
@@ -87,17 +87,17 @@ def parse_file( fname, edges, transform, screen, color ):
     # new curve stuff
     
     elif line == 'circle':
-      add_circle( edges, args[0], args[1], args[2], args[3], STEP )
+      args = [float(x) for x in args]
+      add_circle(edges, args[0], args[1], args[2], args[3], STEP)
       
     elif line == 'hermite':
-      pass
+      args = [float(x) for x in args]
+      add_curve(edges, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], STEP, 0)
       
     elif line == 'bezier':
-      pass
-      
-      
-      
-        
+      args = [float(x) for x in args]
+      add_curve(edges, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], STEP, 1)
+
     elif line == 'ident':
       ident(transform)
 
