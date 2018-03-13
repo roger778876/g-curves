@@ -21,11 +21,11 @@ def make_hermite():
 # hermite = 0; bezier = 1
 def generate_curve_coefs(p1, p2, p3, p4, t):
   if (t == 0):
-    points = [[p1,p2,p3,p4]]
+    points = [[p1, p2, p3, p4]]
     matrix_mult(make_hermite(), points)
     return points
   else:
-    points = [[p1,p2,p3,p4]]
+    points = [[p1, p2, p3, p4]]
     matrix_mult(make_bezier(), points)
     return points
 
